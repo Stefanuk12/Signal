@@ -7,11 +7,14 @@ local Heartbeat = RunService.Heartbeat
 -- // Signal Class
 local Signal = {}
 Signal.__index = Signal
+Signal.__type = "Signal"
 Signal.ClassName = "Signal"
 
 -- // Connection Class
 local Connection = {}
 Connection.__index = Connection
+Connection.__type = "Connection"
+Connection.ClassName = "Connection"
 
 -- // Connection Constructor
 function Connection.new(Signal, Callback)
