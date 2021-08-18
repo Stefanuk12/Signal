@@ -4,6 +4,8 @@ local RunService = game:GetService("RunService")
 -- // Vars
 local Heartbeat = RunService.Heartbeat
 
+-- ^ above is only used for wait. if you are on standard lua, replace that and the usage of Heartbeat:Wait() with your own
+
 -- // Signal Class
 local Signal = {}
 Signal.__index = Signal
