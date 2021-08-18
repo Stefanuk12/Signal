@@ -117,7 +117,7 @@ function Signal.Wait(self, Timeout)
         Fired = true
     end)
 
-    -- // Wait until fired
+    -- // Constant loop
     local timeElapsed = tick()
     while (true) do
         -- // Wait
