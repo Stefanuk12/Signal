@@ -69,7 +69,7 @@ function Signal.new(Name)
     self.Connections = {}
 
     -- // Return new class
-	return self
+    return self
 end
 
 -- // Connect to a signal
