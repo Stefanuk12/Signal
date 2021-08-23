@@ -19,7 +19,7 @@ Connection.__type = "Connection"
 Connection.ClassName = "Connection"
 
 -- // Connection Constructor
-function Connection.new(Signal, Callback)
+function Connection.new(Signal: table, Callback: function): table
     -- // Check Signal
     local typeofSignal = typeof(Signal)
     assert(typeofSignal == "table" and Signal.ClassName == "Signal", "bad argument #1 to 'new' (Signal expected, got " .. typeofSignal .. ")")
@@ -41,17 +41,17 @@ function Connection.new(Signal, Callback)
 end
 
 -- // Enable a conneciton
-function Connection.Enable(self)
+function Connection.Enable(self: table): nil
     self.State = true
 end
 
 -- // Disable a connection
-function Connection.Disable(self)
+function Connection.Disable(self: table): nil
     self.State = false
 end
 
 -- // Disconnect a connection
-function Connection.Disconnect(self)
+function Connection.Disconnect(self: table): nil
     -- // Vars
     local Connections = self.Signal.Connections
     local selfInTable = table.find(Connections, self)
@@ -62,7 +62,7 @@ end
 Connection.disconnect = Connection.Disconnect
 
 -- // Signal Constructor
-function Signal.new(Name)
+function Signal.new(Name: string): table
     -- // Check Name
     local typeofName = typeof(Name)
     assert(typeofName == "string", "bad argument #1 for 'new' (string expected, got " .. typeofName .. ")")
@@ -78,7 +78,7 @@ function Signal.new(Name)
 end
 
 -- // Connect to a signal
-function Signal.Connect(self, Callback)
+function Signal.Connect(self: table, Callback: function): table
     -- // Check callback
     local typeofCallback = typeof(Callback)
     assert(typeofCallback == "function", "bad argument #1 for 'Connect' (function expected, got " .. typeofCallback .. ")")
@@ -95,7 +95,7 @@ end
 Signal.connect = Signal.Connect
 
 -- // Fire a signal
-function Signal.Fire(self, ...)
+function Signal.Fire(self: table, ...): nil
     -- // Loop through connections
     for _, connection in ipairs(self.Connections) do
         -- // See whether it can be fired
@@ -110,7 +110,7 @@ end
 Signal.fire = Signal.Fire
 
 -- // Wait for a signal
-function Signal.Wait(self, Timeout)
+function Signal.Wait(self: table, Timeout: number): any
     -- // Vars
     Timeout = (Timeout and Timeout * 1000 or 9e9) -- // Convert into ms
     local returnVal = {}
@@ -149,7 +149,7 @@ end
 Signal.wait = Signal.Wait
 
 -- // Destroy a signal
-function Signal.Destroy(self)
+function Signal.Destroy(self: table): nil
     self = nil
 end
 Signal.destroy = Signal.destroy
