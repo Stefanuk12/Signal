@@ -19,7 +19,7 @@ Connection.__type = "Connection"
 Connection.ClassName = "Connection"
 
 -- // Connection Constructor
-function Connection.new(Signal: table, Callback: function): table
+function Connection.new(Signal: table, Callback: any): table
     -- // Check Signal
     local typeofSignal = typeof(Signal)
     assert(typeofSignal == "table" and Signal.ClassName == "Signal", "bad argument #1 to 'new' (Signal expected, got " .. typeofSignal .. ")")
@@ -78,7 +78,7 @@ function Signal.new(Name: string): table
 end
 
 -- // Connect to a signal
-function Signal.Connect(self: table, Callback: function): table
+function Signal.Connect(self: table, Callback: any): table
     -- // Check callback
     local typeofCallback = typeof(Callback)
     assert(typeofCallback == "function", "bad argument #1 for 'Connect' (function expected, got " .. typeofCallback .. ")")
