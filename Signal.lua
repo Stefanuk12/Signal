@@ -107,7 +107,6 @@ Signal.fire = Signal.Fire
 -- // Wait for a signal
 function Signal.Wait(self: table, Timeout: number): any
     -- // Vars
-    Timeout = (Timeout and Timeout * 1000 or 9e9) -- // Convert into ms
     local returnVal = {}
     local Fired = false
 
