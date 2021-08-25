@@ -1,10 +1,5 @@
--- // Services
-local RunService = game:GetService("RunService")
-
 -- // Vars
-local Heartbeat = RunService.Heartbeat
-
--- ^ above is only used for wait. if you are on standard lua, replace that and the usage of Heartbeat:Wait() with your own
+local taskwait = task.wait or wait
 
 -- // Signal Class
 local Signal = {}
@@ -126,7 +121,7 @@ function Signal.Wait(self: table, Timeout: number): any
     local timeElapsed = tick()
     while (true) do
         -- // Wait
-        Heartbeat:Wait()
+        taskwait()
 
         -- // Set time elapsed
         timeElapsed = tick() - timeElapsed
