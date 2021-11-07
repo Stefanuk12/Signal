@@ -106,6 +106,9 @@ Signal.fire = Signal.Fire
 
 -- // Wait for a signal
 function Signal.Wait(self: table, Timeout: number): any
+    -- // Default value
+    Timeout = Timeout or (1/0)
+    
     -- // Vars
     local returnVal = {}
     local Fired = false
