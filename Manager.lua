@@ -24,6 +24,11 @@ do
 
     -- // Add a signal
     function Manager.Add(self, Signal)
+        -- // Create signal if string is passed
+        if (typeof(Signal) == "string") then
+            Signal = SignalBuilder.new(Signal)
+        end
+
         -- // Add
         self.Signals[Signal.Name] = Signal
     end
