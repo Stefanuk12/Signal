@@ -40,16 +40,7 @@ do
     end
 
     -- // Create a signal
-    function Manager.Create(self, SignalName)
-        -- // Create the signal
-        local Signal = SignalBuilder.new(SignalName)
-
-        -- // Add it
-        self:Add(Signal)
-
-        -- // Return the signal
-        return Signal
-    end
+    Manager.Create = Manager.Add
 
     -- // Fire a signal
     function Manager.Fire(self, SignalName, ...)
