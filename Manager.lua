@@ -11,7 +11,7 @@ do
         local self = setmetatable({}, Manager)
 
         -- // Initialise vars
-        local Signals = {}
+        self.Signals = {}
 
         -- // Return class
         return self

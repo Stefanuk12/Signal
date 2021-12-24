@@ -66,6 +66,7 @@ function Signal.new(Name: string): table
     local self = setmetatable({}, Signal)
 
     -- // Set properties
+    self.Name = Name
     self.Connections = {}
 
     -- // Return new class
