@@ -65,6 +65,18 @@ do
         -- // Connect
         return Signal:Connect(...)
     end
+
+    -- // Wait for a signal to fire
+    function Manager.Wait(self, SignalName, Timeout)
+        -- // Get the signal
+        local Signal = self:Get(SignalName)
+
+        -- // Make sure signal exists
+        assert(Signal, "signal does not exist")
+
+        -- // Connect
+        return Signal:Wait(Timeout)
+    end
 end
 
 -- // Return
