@@ -67,7 +67,7 @@ do
     end
 
     -- // Wait for a signal to fire
-    function Manager.Wait(self, SignalName, Timeout)
+    function Manager.Wait(self, SignalName, Timeout, Filter)
         -- // Get the signal
         local Signal = self:Get(SignalName)
 
@@ -75,7 +75,7 @@ do
         assert(Signal, "signal does not exist")
 
         -- // Connect
-        return Signal:Wait(Timeout)
+        return Signal:Wait(Timeout, Filter)
     end
 end
 

@@ -1,5 +1,8 @@
 -- // Vars
 local taskwait = task.wait or wait
+local taskspawn = task.spawn or function(f, ...)
+    return coroutine.resume(coroutine.create(f), ...)
+end
 
 -- // Signal Class
 local Signal = {}
@@ -100,34 +103,37 @@ function Signal.Fire(self: table, ...): nil
         end
 
         -- // Fire
-        coroutine.wrap(connection.Function)(...)
+        taskspawn(connection.Function, ...)
     end
 end
 Signal.fire = Signal.Fire
 
 -- // Wait for a signal
-function Signal.Wait(self: table, Timeout: number): any
+function Signal.Wait(self: table, Timeout: number, Filter: FunctionalTest): any
     -- // Default value
     Timeout = Timeout or (1/0)
-    
+    Filter = Filter or function(...) return true end
+
     -- // Vars
-    local returnVal = {}
+    local Return = {}
     local Fired = false
 
     -- // Connect
     local connection = self:Connect(function(...)
-        returnVal = {...}
-        Fired = true
+        if (Filter(...)) then
+            Return = {...}
+            Fired = true
+        end
     end)
 
     -- // Constant loop
-    local timeElapsed = tick()
+    local Start = tick()
     while (true) do
         -- // Wait
         taskwait()
 
         -- // Set time elapsed
-        timeElapsed = tick() - timeElapsed
+        local timeElapsed = tick() - Start
 
         -- // See if fired or timed out
         if not (Fired or timeElapsed > Timeout) then
@@ -142,7 +148,7 @@ function Signal.Wait(self: table, Timeout: number): any
     connection:Disconnect()
 
     -- // Return
-    return unpack(returnVal)
+    return unpack(Return)
 end
 Signal.wait = Signal.Wait
 
