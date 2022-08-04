@@ -96,7 +96,7 @@ Signal.connect = Signal.Connect
 -- // Disconnects all of the signals
 function Signal.DisconnectAll(self: table)
     -- // Loop through each connection
-    for i = #self.Connections, 1 do
+    for i = #self.Connections, 1, -1 do
         -- // Disconnect
         self.Connections[i]:Disconnect()
     end
