@@ -66,6 +66,26 @@ do
         return Signal:Connect(...)
     end
 
+    -- // Disconnects all of the signals
+    function Manager.Disconnect(self, SignalName)
+        -- // Disconnecting all of one signal
+        if (SignalName) then
+            -- // Get the signal
+            local Signal = self:Get(SignalName)
+
+            -- // Make sure signal exists
+            assert(Signal, "signal does not exist")
+
+            -- // Disconnect
+            return Signal:DisconnectAll()
+        end
+
+        -- // Disconnecting every signal
+        for _, Signal in pairs(self.Signals) do
+            Signal:DisconnectAll()
+        end
+    end
+
     -- // Wait for a signal to fire
     function Manager.Wait(self, SignalName, Timeout, Filter)
         -- // Get the signal
