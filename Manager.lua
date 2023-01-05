@@ -98,6 +98,6 @@ do
         return Signal:Wait(Timeout, Filter)
     end
 end
-
+    
 -- // Return
 return Manager
